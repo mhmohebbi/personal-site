@@ -24,7 +24,7 @@ export const profile = {
     github: 'https://github.com/mhmohebbi',
     linkedin: 'https://www.linkedin.com/in/hossein-mohebbi',
   },
-  lede: `I’m a machine learning researcher working on reinforcement learning, causal inference and robust learning. Lately I’ve been building <em>RL environments</em> for niche, expert domains like ML research, biology and physics: real tasks paired with verifiers that reward correct answers and can’t be gamed. I also work on computer-use agents.`,
+  lede: `I’m a machine learning researcher working on reinforcement learning, causal inference and robust learning. Lately I’ve been focused on computer-use agents and RL environments for expert domains.`,
   affiliation: [
     'Researcher at an AI lab in stealth',
     'MMath, University of Waterloo',
