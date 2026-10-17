@@ -9,7 +9,7 @@ export default function render(ctx) {
     body: html`<section class="notfound">
   <p class="kicker">Error 404</p>
   <h1 class="notfound__title">This state isn’t reachable.</h1>
-  <p class="notfound__text">The page you asked for doesn’t exist, or it has moved. <a href="${ctx.base}">Return to the homepage</a> or see the <a href="${ctx.base}cv/">CV</a>.</p>
+  <p class="notfound__text">The page you asked for doesn’t exist, or it has moved. <a href="${ctx.base}">Return to the homepage</a>.</p>
 </section>`,
   });
 }

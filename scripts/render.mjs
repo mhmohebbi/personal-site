@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 // Renders the generated binary assets that are committed to the repo:
-//   src/static/cv.pdf                   the PDF CV, printed from /cv/
 //   src/assets/img/og.png               1200×630 social preview
 //   src/assets/img/apple-touch-icon.png 180×180 home-screen icon
 //
@@ -14,7 +13,7 @@ import { createServer } from 'node:http';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { profile, site } from '../src/content/site.mjs';
+import { site } from '../src/content/site.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, '_site');
@@ -54,22 +53,6 @@ const origin = `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
 
 try {
-  // ---- PDF CV
-  const page = await browser.newPage();
-  await page.emulateMedia({ media: 'print', colorScheme: 'light' });
-  await page.goto(`${origin}/cv/`, { waitUntil: 'networkidle' });
-  await page.evaluate(() => document.fonts.ready);
-  await page.pdf({
-    path: path.join(ROOT, 'src/static/cv.pdf'),
-    format: 'Letter',
-    printBackground: true,
-    margin: { top: '0.6in', bottom: '0.7in', left: '0.7in', right: '0.7in' },
-    displayHeaderFooter: true,
-    headerTemplate: '<span></span>',
-    footerTemplate: `<div style="width:100%;text-align:center;font:7.5pt Helvetica,Arial,sans-serif;color:#777">${profile.name} · Page <span class="pageNumber"></span> of <span class="totalPages"></span></div>`,
-  });
-  console.log('rendered src/static/cv.pdf');
-
   // ---- social preview
   const og = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1, colorScheme: 'light' });
   await og.goto(`${origin}/`, { waitUntil: 'networkidle' });

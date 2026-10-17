@@ -23,7 +23,6 @@ function hero(ctx) {
     { label: 'Google Scholar', href: profile.links.scholar, icon: icons.scholar },
     { label: 'GitHub', href: profile.links.github, icon: icons.github },
     { label: 'LinkedIn', href: profile.links.linkedin, icon: icons.linkedin },
-    { label: 'CV', href: `${ctx.base}cv/`, icon: icons.cv },
   ];
   return html`<section class="hero" aria-labelledby="h-name">
   <canvas class="hero__field" data-landscape aria-hidden="true"></canvas>

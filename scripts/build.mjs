@@ -13,7 +13,6 @@ import { fileURLToPath } from 'node:url';
 
 import { site } from '../src/content/site.mjs';
 import renderIndex from '../src/pages/index.mjs';
-import renderCv from '../src/pages/cv.mjs';
 import render404 from '../src/pages/404.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -25,7 +24,6 @@ const basePath = new URL(siteUrl + '/').pathname; // "/" or "/repo/"
 
 const PAGES = [
   { out: 'index.html', page: 'home', render: renderIndex },
-  { out: 'cv/index.html', page: 'cv', render: renderCv },
   // GitHub Pages serves 404.html at arbitrary depths, so it needs absolute URLs.
   { out: '404.html', page: '404', render: render404, absolute: true, noindex: true },
 ];

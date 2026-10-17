@@ -7,9 +7,9 @@ Node build and is deployed to GitHub Pages by GitHub Actions.
 
 Everything on the site comes from **`src/content/site.mjs`**: the profile, news, research
 threads, publications (with BibTeX), experience, talks, teaching and honours. The homepage,
-the web CV at `/cv/`, the PDF CV, structured data and the sitemap are all rendered from it.
+structured data and the sitemap are all rendered from it.
 
-After changing content, regenerate the committed PDF CV and social image:
+After changing content, regenerate the committed social image:
 
 ```sh
 npm run render   # needs Playwright: npm i -D playwright && npx playwright install chromium
@@ -22,7 +22,7 @@ npm run render   # needs Playwright: npm i -D playwright && npx playwright insta
 | `npm run dev`    | Build, serve on http://localhost:4000, and rebuild on every change   |
 | `npm run build`  | Build to `_site/`                                                    |
 | `npm run check`  | Build, then verify every internal link, asset and `#anchor` resolves |
-| `npm run render` | Re-render `src/static/cv.pdf`, `og.png` and `apple-touch-icon.png`   |
+| `npm run render` | Re-render `og.png` and `apple-touch-icon.png`                        |
 
 No `npm install` is needed for anything except `render`.
 
@@ -31,7 +31,7 @@ No `npm install` is needed for anything except `render`.
 ```
 src/
   content/site.mjs        all site content (single source of truth)
-  pages/                  index (homepage), cv, 404
+  pages/                  index (homepage), 404
   templates/              layout, shared fragments, icons, build-time figure SVG
   lib/html.mjs            escaping html`` template tag
   assets/
@@ -71,3 +71,10 @@ These files stay at their old paths because other things may still link to them:
 `/Hossein-Mohebbi-Resume.pdf` (now a copy of the current CV), `/gym/` (redirect),
 and the token-metadata files `/pbst.json`, `/pbst.png`, `/sbt.json`, `/sbt.png` and
 `/AccreditedInvsestor.png`.
+
+## CV
+
+The web CV page (`/cv/`) and the script that printed it to PDF are kept on the `cv-page`
+branch and are not part of `main`. `src/static/cv.pdf` is the last PDF rendered there; it is
+still served at `/cv.pdf` and `/Hossein-Mohebbi-Resume.pdf` but nothing on the site links to it.
+To update it, render it on `cv-page` (`npm run render`) and copy the PDF over.

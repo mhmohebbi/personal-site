@@ -1,5 +1,5 @@
-// Single source of truth for everything on the site: the homepage, the web CV,
-// the PDF CV, structured data and the sitemap are all rendered from this file.
+// Single source of truth for everything on the site: the homepage, structured
+// data and the sitemap are all rendered from this file.
 //
 // Prose fields (lede, about, summary, desc, text) are trusted HTML. Everything
 // else is escaped when rendered.

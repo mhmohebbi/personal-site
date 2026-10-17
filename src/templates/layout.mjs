@@ -26,7 +26,6 @@ export function navLinks(ctx) {
     { href: `${home}#research`, label: 'Research', id: 'research' },
     { href: `${home}#publications`, label: 'Publications', id: 'publications' },
     { href: `${home}#experience`, label: 'Experience', id: 'experience' },
-    { href: `${ctx.base}cv/`, label: 'CV', id: 'cv', current: ctx.page === 'cv' },
   ];
 }
 
