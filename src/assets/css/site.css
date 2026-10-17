@@ -317,7 +317,28 @@ img { max-width: 100%; }
 
 /* ------------------------------------------------------------------- hero */
 
-.hero { padding-block: clamp(3.25rem, 9vw, 7rem) clamp(0.5rem, 2vw, 1.5rem); }
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(3.25rem, 9vw, 7rem) clamp(0.5rem, 2vw, 1.5rem);
+}
+
+/* Contour-map backdrop, drawn by js/landscape.js. It runs up under the masthead
+   and fades out before the first section. */
+.hero__field {
+  position: absolute;
+  top: calc(-1 * var(--masthead));
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: calc(100% + var(--masthead) + 3rem);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent 96%);
+}
+.hero__field.is-on { opacity: 1; }
 
 .hero__aside { padding-top: 0.55rem; }
 
@@ -1118,7 +1139,7 @@ img { max-width: 100%; }
   }
   html { font-size: 10pt; background: #fff; }
   body { background: #fff; font-size: 10.5pt; }
-  .masthead, .colophon, .skip, .fig__replay, .linklike, .bib, .cv__pdf { display: none !important; }
+  .masthead, .colophon, .skip, .fig__replay, .linklike, .bib, .cv__pdf, .hero__field { display: none !important; }
   a { text-decoration: none; }
   .section, .thread, .pub, .entry { break-inside: avoid; }
 

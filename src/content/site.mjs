@@ -11,7 +11,7 @@ export const site = {
   lang: 'en',
   title: 'Hossein Mohebbi',
   description:
-    'Hossein Mohebbi is a machine learning researcher working on reinforcement learning, causal inference and robust machine learning. His current focus is computer-use agents.',
+    'Hossein Mohebbi is a machine learning researcher working on reinforcement learning, causal inference and robust machine learning. He builds RL environments for expert domains and works on computer-use agents.',
 };
 
 export const profile = {
@@ -24,7 +24,7 @@ export const profile = {
     github: 'https://github.com/mhmohebbi',
     linkedin: 'https://www.linkedin.com/in/hossein-mohebbi',
   },
-  lede: `I’m a machine learning researcher working on reinforcement learning, causal inference and robust learning. Right now I’m focused on <em>computer-use agents</em>: models that operate software through the screen, cursor and keyboard, the way people do.`,
+  lede: `I’m a machine learning researcher working on reinforcement learning, causal inference and robust learning. Lately I’ve been building <em>RL environments</em> for niche, expert domains like ML research, biology and physics: real tasks paired with verifiers that reward correct answers and can’t be gamed. I also work on computer-use agents.`,
   affiliation: [
     'Researcher at an AI lab in stealth',
     'MMath, University of Waterloo',

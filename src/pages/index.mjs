@@ -26,9 +26,10 @@ function hero(ctx) {
     { label: 'CV', href: `${ctx.base}cv/`, icon: icons.cv },
   ];
   return html`<section class="hero" aria-labelledby="h-name">
+  <canvas class="hero__field" data-landscape aria-hidden="true"></canvas>
   <div class="grid">
     <div class="hero__aside">
-      <img class="hero__portrait" src="${ctx.asset(profile.portrait)}" alt="Portrait of ${profile.name}" width="400" height="395" decoding="async" fetchpriority="high">
+      <img class="hero__portrait" src="${ctx.asset(profile.portrait)}" alt="Portrait of ${profile.name}" width="600" height="600" decoding="async" fetchpriority="high">
     </div>
     <div class="hero__body">
       <h1 class="hero__name" id="h-name" data-hero-name>${profile.name}</h1>

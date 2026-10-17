@@ -1,5 +1,6 @@
 // Progressive enhancement only: every page is complete without this script.
 
+import { mountLandscape } from './landscape.js';
 import { mountTrajectory } from './figures/trajectory.js';
 import { mountPoser } from './figures/poser.js';
 import { mountCrda } from './figures/crda.js';
@@ -51,6 +52,17 @@ if (tracked.length) {
     { rootMargin: '-35% 0px -60% 0px' },
   );
   tracked.forEach((s) => io.observe(s));
+}
+
+/* ---------- hero backdrop ---------- */
+
+const landscape = document.querySelector('[data-landscape]');
+if (landscape) {
+  try {
+    mountLandscape(landscape, { reduced, clear: document.querySelector('.hero__body') });
+  } catch (err) {
+    console.error('hero backdrop failed to start', err);
+  }
 }
 
 /* ---------- BibTeX ---------- */
