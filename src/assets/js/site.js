@@ -14,14 +14,33 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const activeTheme = () => (root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
 const themeColor = document.querySelector('meta[name="theme-color"]');
 
-document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
-  const next = activeTheme() === 'dark' ? 'light' : 'dark';
+function setTheme(next) {
   root.setAttribute('data-theme', next);
   if (themeColor) themeColor.content = next === 'dark' ? '#131312' : '#fbfaf7';
   try {
     localStorage.setItem('theme', next);
   } catch {
     /* storage unavailable: the choice lasts for this page view */
+  }
+}
+
+// The whole page cross-fades as one picture where the browser supports view
+// transitions; elsewhere it switches at once. Either way, per-element colour
+// transitions are held off so nothing changes out of step.
+let switching = 0; // switches in flight; a quick second click overlaps the first
+document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+  const next = activeTheme() === 'dark' ? 'light' : 'dark';
+  switching++;
+  root.classList.add('theme-switching');
+  const done = () => --switching || root.classList.remove('theme-switching');
+
+  if (document.startViewTransition && !reduced) {
+    const fade = document.startViewTransition(() => setTheme(next));
+    fade.ready.catch(() => {}); // a newer click skips this fade; that's fine
+    fade.finished.finally(done);
+  } else {
+    setTheme(next);
+    requestAnimationFrame(() => requestAnimationFrame(done));
   }
 });
 

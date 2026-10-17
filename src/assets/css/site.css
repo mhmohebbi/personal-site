@@ -287,6 +287,18 @@ img { max-width: 100%; }
 :root[data-theme="dark"] .theme-toggle__sun { display: block; }
 :root[data-theme="dark"] .theme-toggle__moon { display: none; }
 
+/* Switching theme: js/site.js cross-fades the whole page as one picture, and
+   holds off per-element transitions so nothing changes out of step. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-switching,
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after { transition: none !important; }
+
 /* ------------------------------------------------------------------- hero */
 
 .hero {
