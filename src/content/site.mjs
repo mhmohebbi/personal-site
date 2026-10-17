@@ -19,6 +19,7 @@ export const profile = {
   role: 'Machine Learning Researcher',
   email: 'hossein.mohebbi@uwaterloo.ca',
   portrait: 'assets/img/portrait.jpg',
+  portraitDark: 'assets/img/portrait-dark.jpg', // shown in dark mode
   links: {
     scholar: 'https://scholar.google.ca/citations?user=X4afmQ8AAAAJ',
     github: 'https://github.com/mhmohebbi',

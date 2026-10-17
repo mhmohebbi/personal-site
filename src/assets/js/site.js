@@ -10,12 +10,14 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- theme ---------- */
 
-const systemDark = matchMedia('(prefers-color-scheme: dark)');
-const activeTheme = () => root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+// Light by default; dark only when chosen with the toggle.
+const activeTheme = () => (root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+const themeColor = document.querySelector('meta[name="theme-color"]');
 
 document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
   const next = activeTheme() === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
+  if (themeColor) themeColor.content = next === 'dark' ? '#131312' : '#fbfaf7';
   try {
     localStorage.setItem('theme', next);
   } catch {

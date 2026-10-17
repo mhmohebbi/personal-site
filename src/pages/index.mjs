@@ -28,7 +28,8 @@ function hero(ctx) {
   <canvas class="hero__field" data-landscape aria-hidden="true"></canvas>
   <div class="grid">
     <div class="hero__aside">
-      <img class="hero__portrait" src="${ctx.asset(profile.portrait)}" alt="Portrait of ${profile.name}" width="600" height="600" decoding="async" fetchpriority="high">
+      <img class="hero__portrait hero__portrait--light" src="${ctx.asset(profile.portrait)}" alt="Portrait of ${profile.name}" width="560" height="560" decoding="async" fetchpriority="high">
+      <img class="hero__portrait hero__portrait--dark" src="${ctx.asset(profile.portraitDark)}" alt="Portrait of ${profile.name}" width="560" height="560" decoding="async">
     </div>
     <div class="hero__body">
       <h1 class="hero__name" id="h-name" data-hero-name>${profile.name}</h1>

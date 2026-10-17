@@ -3,7 +3,8 @@ import { profile, site } from '../content/site.mjs';
 import { icons } from './icons.mjs';
 
 // Runs before first paint: applies a saved theme choice and flags JS support.
-const THEME_BOOT = `(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();`;
+// The site is light unless the visitor has picked dark with the toggle.
+const THEME_BOOT = `(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(t==='dark')document.querySelector('meta[name=theme-color]').content='#131312';}catch(e){}})();`;
 
 function personSchema(ctx) {
   return {
@@ -41,9 +42,8 @@ export function layout(ctx, { title, description = site.description, body, bodyC
 <meta name="description" content="${description}">
 <meta name="author" content="${profile.name}">
 <link rel="canonical" href="${ctx.pageUrl}">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf7">
 <meta property="og:type" content="${ctx.isHome ? 'profile' : 'website'}">
 <meta property="og:title" content="${fullTitle}">
 <meta property="og:description" content="${description}">

@@ -328,7 +328,6 @@ export function mountLandscape(canvas, { reduced, clear }) {
     if (!running) draw(0);
   };
   new MutationObserver(recolor).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolor);
 
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;

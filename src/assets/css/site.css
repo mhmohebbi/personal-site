@@ -112,30 +112,6 @@
   color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #131312;
-    --bg-raised: #1a1a18;
-    --panel: #1b1b19;
-    --ink: #eeece6;
-    --ink-2: #cfccc4;
-    --muted: #9b978d;
-    --faint: #6e6b63;
-    --rule: #2a2926;
-    --rule-strong: #3b3a35;
-    --accent: #ff7a57;
-    --accent-soft: rgba(255, 122, 87, 0.11);
-    --accent-line: rgba(255, 122, 87, 0.5);
-    --on-accent: #1a0d08;
-    --blue: #86afe0;
-    --sel: rgba(255, 122, 87, 0.26);
-    --fig-surface: #20201d;
-    --fig-fill: #2f2e2a;
-    --fig-ink: #4e4c46;
-    color-scheme: dark;
-  }
-}
-
 @media (max-width: 1080px) {
   :root { --rail: 8.5rem; --gap: 2.5rem; }
 }
@@ -310,10 +286,6 @@ img { max-width: 100%; }
 .theme-toggle__sun { display: none; }
 :root[data-theme="dark"] .theme-toggle__sun { display: block; }
 :root[data-theme="dark"] .theme-toggle__moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle__sun { display: block; }
-  :root:not([data-theme="light"]) .theme-toggle__moon { display: none; }
-}
 
 /* ------------------------------------------------------------------- hero */
 
@@ -353,6 +325,10 @@ img { max-width: 100%; }
   background: var(--panel);
   filter: saturate(0.92);
 }
+/* One photo per theme. */
+.hero__portrait--dark { display: none; }
+:root[data-theme="dark"] .hero__portrait--light { display: none; }
+:root[data-theme="dark"] .hero__portrait--dark { display: block; }
 
 .hero__name {
   margin: 0;
@@ -1037,7 +1013,8 @@ img { max-width: 100%; }
   }
   html { font-size: 10pt; background: #fff; }
   body { background: #fff; font-size: 10.5pt; }
-  .masthead, .colophon, .skip, .fig__replay, .linklike, .bib, .hero__field { display: none !important; }
+  .masthead, .colophon, .skip, .fig__replay, .linklike, .bib, .hero__field, .hero__portrait--dark { display: none !important; }
+  .hero__portrait--light { display: block !important; }
   a { text-decoration: none; }
   .section, .thread, .pub, .entry { break-inside: avoid; }
 }
